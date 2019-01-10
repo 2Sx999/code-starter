@@ -1,0 +1,51 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&autoReconnect=true&useUnicode=true
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    druid:
+      initialSize: 1
+      minIdle: 5
+      maxActive: 10
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  data:
+    mongodb:
+      host: localhost
+      database: test
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+mybatis:
+  mapper-locations: classpath:cn/porkchop/springbootstarter/mapper/*.xml
+  type-aliases-package: cn.porkchop.springbootstarter.bean
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 1000
+logging:
+  config: classpath:spring-logback.xml
+  path: /Users/2sx999/programming/logs
+  name: springbootstarter
